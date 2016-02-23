@@ -1,0 +1,13 @@
+dependencies:
+  pre:
+    - circleci/check_pr.sh
+    - echo y | android update sdk --no-ui --all --filter extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository
+
+general:
+  build_dir: Launcher
+  artifacts:
+    - "~/sky-service/android/serviceApp/build/test-results/integrationDebug"
+
+test:
+  override:
+    - ./gradlew testRelease
